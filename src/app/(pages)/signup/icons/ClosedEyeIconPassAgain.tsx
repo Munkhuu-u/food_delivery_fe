@@ -1,4 +1,4 @@
-export function ClosedEyeIcon() {
+export function ClosedEyeIconPassAgain() {
   return (
     <svg
       width="24"

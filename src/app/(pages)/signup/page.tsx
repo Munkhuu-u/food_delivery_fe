@@ -4,9 +4,21 @@
 import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
 import React from "react";
 import { useState } from "react";
-import { CheckedBoxIcon, ClosedEyeIcon, OpenEyeIcon } from "./icons";
+import {
+  CheckedBoxIcon,
+  ClosedEyeIconPass,
+  OpenEyeIconPass,
+  ClosedEyeIconPassAgain,
+  OpenEyeIconPassAgain,
+} from "./icons";
 // import "../global.css";
-
+import { Montserrat } from "next/font/google";
+// import { Open_Sans } from "next/font/google";
+// const openSans = Open_Sans({
+const openSans = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
 type Props = {};
 
 const inputs: { name: string; placeholderName: string }[] = [
@@ -20,24 +32,70 @@ const inputs: { name: string; placeholderName: string }[] = [
 export default function Page({}: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
-    console.log("start working");
-    console.log({ "showPassword1:": showPassword });
     setShowPassword(!showPassword);
-    console.log({ "showPassword2:": showPassword });
+    console.log("pressed handleClickShowPassword");
   };
+
+  const [showPasswordAgain, setShowPasswordAgain] = useState(false);
+  const handleClickShowPasswordAgain = () => {
+    setShowPasswordAgain(!showPasswordAgain);
+  };
+
   // setShowPassword((showPassword) => !showPassword);
   return (
-    <div className="bg-red-300 mt-[74px]">
-      <div className="flex flex-col max-w-[440px] mx-auto p-[32px] bg-red-500">
-        <h2 className="flex flex-col items-center">Бүртгүүлэх</h2>
-        <div className="flex flex-col bg-blue-400 space-y-[16px] mt-[48px]">
+    <div className="mt-[74px]">
+      <div className="flex flex-col max-w-[440px] mx-auto p-[32px]">
+        <h2
+          className={`${openSans.className} flex flex-col items-center font-bold text-3xl`}
+        >
+          Бүртгүүлэх
+        </h2>
+        <div className="flex flex-col space-y-[16px] mt-[48px]">
           {inputs.map((e) => (
             // eslint-disable-next-line react/jsx-key
-            <div className="">
+            <div className="relative w-full ">
               <p>{e.name}</p>
-              <input className="" placeholder={e.placeholderName}></input>
-              <div onClick={handleClickShowPassword}>
-                {showPassword ? <ClosedEyeIcon /> : <OpenEyeIcon />}
+              <input
+                className="w-full bg-gray border-[1px] border-darkgray rounded pl-[16px] py-[14.5px]"
+                placeholder={e.placeholderName}
+                type={
+                  e.name == "Нууц үг"
+                    ? showPassword
+                      ? ""
+                      : "password"
+                    : e.name == "Нууц үг давтах"
+                    ? showPasswordAgain
+                      ? ""
+                      : "password"
+                    : ""
+                }
+              ></input>
+              <div
+                onClick={
+                  e.name == "Нууц үг"
+                    ? handleClickShowPassword
+                    : handleClickShowPasswordAgain
+                }
+                className="absolute right-[17px] top-10 border-solid"
+              >
+                {e.name == "Нууц үг" ? (
+                  showPassword ? (
+                    <OpenEyeIconPass />
+                  ) : (
+                    <ClosedEyeIconPass />
+                  )
+                ) : (
+                  ""
+                )}
+                {e.name == "Нууц үг давтах" ? (
+                  showPasswordAgain ? (
+                    <OpenEyeIconPassAgain />
+                  ) : (
+                    <ClosedEyeIconPassAgain />
+                  )
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           ))}

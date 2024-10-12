@@ -1,4 +1,4 @@
-export function OpenEyeIcon() {
+export function OpenEyeIconPass() {
   return (
     <svg
       width="24"
