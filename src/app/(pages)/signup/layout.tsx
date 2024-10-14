@@ -34,17 +34,20 @@ export default function DashboardLayout({
           })}
         </div>
         <div className="flex flex-row gap-2">
-          <div className="relative border-2 py-[8px] pl-[48px] pr-[16px] border-darkgray rounded-[8px] bg-white">
-            <div className="absolute left-0">
+          <div className="relative py-[8px] pl-[48px] pr-[16px] border-[1px] border-black rounded-[8px] bg-white">
+            <div className="absolute w-fit left-4 inset-y-0 flex items-center">
               <Search />
             </div>
-            <input placeholder="Хайх"></input>
+            <input
+              placeholder="Хайх"
+              className="border-[1px] border-green-600 h-full"
+            ></input>
           </div>
           {navBarRightButtons.map((e) => {
             return (
-              <div className="flex flex-row bg-red-300 justify-center items-center gap-2 px-[16px] py-[8px]">
+              <div className="flex flex-row justify-center items-center gap-2 px-[16px] py-[8px]">
                 {e.icon}
-                <button className="flex py-[8px] px-[16px] items-center justify-center font-bold text-base leading-[16px] bg-slate-500">
+                <button className="flex py-[8px] px-[16px] items-center justify-center font-bold text-base leading-[16px]">
                   {e.name}
                 </button>
               </div>
