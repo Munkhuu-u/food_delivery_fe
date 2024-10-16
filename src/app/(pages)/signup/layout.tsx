@@ -1,5 +1,13 @@
 import { JSXElementConstructor } from "react";
-import { PineconeIcon, Basket, Person, Search } from "./icons";
+import {
+  PineconeIcon,
+  Basket,
+  Person,
+  Search,
+  Facebook,
+  Instagram,
+  Twitter,
+} from "./icons";
 // import {style} from "../../global.css"
 
 export default function DashboardLayout({
@@ -19,15 +27,29 @@ export default function DashboardLayout({
     { name: "Нэвтрэх", icon: <Person /> },
   ];
 
+  const footerOptions: { name: string }[] = [
+    { name: "Нүүр" },
+    { name: "Холбоо барих" },
+    { name: "Хоолны цэс" },
+    { name: "Үйлчилгээний нөхцөл" },
+    { name: "Хүргэлтийн бүс" },
+    { name: "Нууцлалын бодлого" },
+  ];
+  const footerLinks: { icon: JSX.Element }[] = [
+    { icon: <Facebook /> },
+    { icon: <Instagram /> },
+    { icon: <Twitter /> },
+  ];
+
   return (
     <section>
       {/* Include shared UI here e.g. a header or sidebar */}
-      <div className="max-w-[1258px] mx-auto px-[24px] py-[8px] flex flex-row justify-between items-center bg-green-300">
-        <div className="flex flex-row bg-blue-400">
+      <div className="max-w-[1258px] mx-auto px-[24px] py-[8px] flex flex-row justify-between items-center">
+        <div className="flex flex-row">
           <PineconeIcon />
           {navBarLeftButtons.map((e) => {
             return (
-              <button className="flex py-[8px] px-[16px] items-center justify-center font-bold text-base leading-[16px]  bg-slate-500 border-[1px] border-purple-500">
+              <button className="flex py-[8px] px-[16px] items-center justify-center font-bold text-base leading-[16px]">
                 {e.name}
               </button>
             );
@@ -40,12 +62,12 @@ export default function DashboardLayout({
             </div>
             <input
               placeholder="Хайх"
-              className="border-[1px] border-green-600 h-full"
+              className="border-[1px] h-full border-none"
             ></input>
           </div>
           {navBarRightButtons.map((e) => {
             return (
-              <div className="flex flex-row justify-center items-center gap-2 px-[16px] py-[8px]">
+              <div className="flex flex-row justify-center items-center px-[16px] py-[8px]">
                 {e.icon}
                 <button className="flex py-[8px] px-[16px] items-center justify-center font-bold text-base leading-[16px]">
                   {e.name}
@@ -56,6 +78,18 @@ export default function DashboardLayout({
         </div>
       </div>
       {children}
+      <div className="flex flex-col justify-center items-center bg-enabledGreenFill">
+        <div className="max-w-[1200px] flex flex-row justify-between gap-[95px]">
+          {footerOptions.map((e) => {
+            return <p>{e.name}</p>;
+          })}
+        </div>
+        <div className="flex flex-row gap-[18px]">
+          {footerLinks.map((e) => {
+            return <div>{e.icon}</div>;
+          })}
+        </div>
+      </div>
     </section>
   );
 }

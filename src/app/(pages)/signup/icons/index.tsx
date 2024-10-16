@@ -8,3 +8,6 @@ export * from "./OpenEyeIconPassAgain";
 export * from "./Search";
 export * from "./Basket";
 export * from "./Person";
+export * from "./Facebook";
+export * from "./Instagram";
+export * from "./Twitter";
